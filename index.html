@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML, SVG, CSS y JS</title>
+  <style>
+    :root { --fuente: 'Times New Roman', Times, serif; }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;          /* sin scroll */
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: var(--fuente);
+      background: #fff;
+    }
+
+    h1 {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 12px 24px;
+      font-size: clamp(20px, 2.2vh, 32px);
+      text-align: center;
+    }
+
+    svg {
+      flex: 1 1 auto;            /* ocupa todo el alto restante */
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>HTML, SVG, CSS y JS</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620"
+     preserveAspectRatio="xMidYMid meet" onclick="alert('what?')">
+  <style>
+    svg      { font-family: var(--fuente); }
+    .bg      { fill: #fff; }
+    .ring    { fill: none; stroke: lightgray; }
+    .spoke   { stroke: #000; }
+    .label   { font-size: 12px; text-anchor: middle; dominant-baseline: middle; }
+    .axis    { fill: none; stroke: currentColor; }
+    .tick    { font-size: 10px; text-anchor: end; dominant-baseline: middle; }
+    .area    { fill-opacity: .3; transition: all ease-out .2s; }
+    .area:hover { fill-opacity: .1; transition: all ease .3s; }
+    .dot     { stroke: none; }
+    .title   { font-size: 12px; font-weight: bold; dominant-baseline: hanging; }
+    .legend  { font-size: 10px; }
+
+    .s0 { fill: #e15873; stroke: #e15873; }
+    .s1 { fill: #0effe2; stroke: #0effe2; }
+    .s2 { fill: #e5de40; stroke: #e5de40; }
+    .s3 { fill: #294ad9; stroke: #294ad9; }
+  </style>
+
+  <rect class="bg" width="900" height="620"/>
+
+  <g transform="translate(340 330)">
+    <!-- Anillos (10 a 90) -->
+    <circle class="ring" r="257"/>
+    <circle class="ring" r="228"/>
+    <circle class="ring" r="200"/>
+    <circle class="ring" r="171"/>
+    <circle class="ring" r="143"/>
+    <circle class="ring" r="114"/>
+    <circle class="ring" r="86"/>
+    <circle class="ring" r="57"/>
+    <circle class="ring" r="29"/>
+
+    <!-- Ejes y etiquetas -->
+    <line class="spoke" x2="0"       y2="-285"/>
+    <line class="spoke" x2="271.05"  y2="-88.07"/>
+    <line class="spoke" x2="167.52"  y2="230.57"/>
+    <line class="spoke" x2="-167.52" y2="230.57"/>
+    <line class="spoke" x2="-271.05" y2="-88.07"/>
+
+    <text class="label" x="0"       y="-295">Staff with PhD</text>
+    <text class="label" x="280.56"  y="-91.16">Faculty Student</text>
+    <text class="label" x="173.4"   y="238.66">International Research Network</text>
+    <text class="label" x="-173.4"  y="238.66">Papers Per Faculty</text>
+    <text class="label" x="-280.56" y="-91.16">Citations per Paper</text>
+
+    <!-- Eje Y: línea + marcas en un solo path -->
+    <path class="axis" d="M-6-285H0V0H-6
+      M-6-256.5H0M-6-228H0M-6-199.5H0M-6-171H0M-6-142.5H0
+      M-6-114H0M-6-85.5H0M-6-57H0M-6-28.5H0"/>
+    <text class="tick" x="-9" y="-256.5">90</text>
+    <text class="tick" x="-9" y="-228">80</text>
+    <text class="tick" x="-9" y="-199.5">70</text>
+    <text class="tick" x="-9" y="-171">60</text>
+    <text class="tick" x="-9" y="-142.5">50</text>
+    <text class="tick" x="-9" y="-114">40</text>
+    <text class="tick" x="-9" y="-85.5">30</text>
+    <text class="tick" x="-9" y="-57">20</text>
+    <text class="tick" x="-9" y="-28.5">10</text>
+    <text class="tick" x="-9" y="0">0</text>
+
+    <!-- Serie 0: PUC -->
+    <polygon class="area s0" points="0,-281 194.97,-63.35 166.93,229.76 -163.4,224.91 -210.18,-68.29"/>
+    <circle class="dot s0" r="1" cx="0"       cy="-281"/>
+    <circle class="dot s0" r="1" cx="194.97"  cy="-63.35"/>
+    <circle class="dot s0" r="1" cx="166.93"  cy="229.76"/>
+    <circle class="dot s0" r="1" cx="-163.4"  cy="224.91"/>
+    <circle class="dot s0" r="1" cx="-210.18" cy="-68.29"/>
+
+    <!-- Serie 1: U. de Chile -->
+    <polygon class="area s1" points="0,-205 62.77,-20.4 166.93,229.76 -166.93,229.76 -208.28,-67.67"/>
+    <circle class="dot s1" r="1" cx="0"       cy="-205"/>
+    <circle class="dot s1" r="1" cx="62.77"   cy="-20.4"/>
+    <circle class="dot s1" r="1" cx="166.93"  cy="229.76"/>
+    <circle class="dot s1" r="1" cx="-166.93" cy="229.76"/>
+    <circle class="dot s1" r="1" cx="-208.28" cy="-67.67"/>
+
+    <!-- Serie 2: U. de Concepción -->
+    <polygon class="area s2" points="0,-182 101.76,-33.06 165.76,228.14 -149.89,206.3 -238.72,-77.56"/>
+    <circle class="dot s2" r="1" cx="0"       cy="-182"/>
+    <circle class="dot s2" r="1" cx="101.76"  cy="-33.06"/>
+    <circle class="dot s2" r="1" cx="165.76"  cy="228.14"/>
+    <circle class="dot s2" r="1" cx="-149.89" cy="206.3"/>
+    <circle class="dot s2" r="1" cx="-238.72" cy="-77.56"/>
+
+    <!-- Serie 3: USACH -->
+    <polygon class="area s3" points="0,-84 80.84,-26.27 163.99,225.72 -135.78,186.88 -165.48,-53.77"/>
+    <circle class="dot s3" r="1" cx="0"       cy="-84"/>
+    <circle class="dot s3" r="1" cx="80.84"   cy="-26.27"/>
+    <circle class="dot s3" r="1" cx="163.99"  cy="225.72"/>
+    <circle class="dot s3" r="1" cx="-135.78" cy="186.88"/>
+    <circle class="dot s3" r="1" cx="-165.48" cy="-53.77"/>
+  </g>
+
+  <!-- Leyenda -->
+  <g transform="translate(700 30)">
+    <text class="title">Institution Name</text>
+
+    <rect class="s0" y="16" width="15" height="15"/>
+    <text class="legend" x="20" y="28.5">
+      <tspan x="20">Pontificia Universidad</tspan>
+      <tspan x="20" dy="1.2em">Católica de Chile</tspan>
+    </text>
+
+    <rect class="s1" y="52.6" width="15" height="15"/>
+    <text class="legend" x="20" y="65.1">Universidad de Chile</text>
+
+    <rect class="s2" y="73.6" width="15" height="15"/>
+    <text class="legend" x="20" y="86.1">Universidad de Concepción</text>
+
+    <rect class="s3" y="94.6" width="15" height="15"/>
+    <text class="legend" x="20" y="107.1">
+      <tspan x="20">Universidad de Santiago de</tspan>
+      <tspan x="20" dy="1.2em">Chile</tspan>
+    </text>
+  </g>
+</svg>
+
+</body>
+</html>
